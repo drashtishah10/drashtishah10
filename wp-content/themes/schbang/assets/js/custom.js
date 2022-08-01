@@ -75,6 +75,7 @@ jQuery("#schbang_test_form").validate({
         },
         phone: {
             required: true,
+            maxlength: 10,
             maxlength: 12
           },
     },
@@ -106,13 +107,14 @@ jQuery("#schbang_test_form").validate({
         var ajaxcall = $.ajax({
             method: "GET",
             url: POST_SUBMITTER.root + 'schbang/v1/formdata',
+            dataType: "json",
             data: JSON.stringify(data),
             contentType: false,
             processData: false,
             cache: false,
-            beforeSend: function ( xhr ) {
-                xhr.setRequestHeader( 'X-WP-Nonce', POST_SUBMITTER.nonce );
-            },
+            // beforeSend: function ( xhr ) {
+            //     xhr.setRequestHeader( 'X-WP-Nonce', POST_SUBMITTER.nonce );
+            // },
             success : function( response ) {
                 console.log( response );
                 alert( POST_SUBMITTER.success );

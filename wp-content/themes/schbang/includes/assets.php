@@ -7,36 +7,13 @@ function mytheme_wp_enqueue_scripts(){
     wp_enqueue_script('jquery');
     //assets/css
    
-    // wp_enqueue_style('font-awesome-css', get_template_directory_uri() . '/assets/css/font-awesome.min.css', array(), '');  
-    // wp_enqueue_style('slick-theme-css', get_template_directory_uri() . '/assets/css/slick-theme.css', array(), '');    
-    // wp_enqueue_style('slick-css', get_template_directory_uri() . '/assets/css/slick.css', array(), '');    
-    // wp_enqueue_style('common-css', get_template_directory_uri() . '/assets/css/common.css', array(), '');  
     
-
-	// if(is_front_page() && is_page_template('page-templates/page-home.php')){   
-    //     wp_enqueue_style('smk-accordion-css', get_template_directory_uri() . '/assets/css/smk-accordion.css', array(), '');      
-    //     wp_enqueue_style('animate-css', get_template_directory_uri() . '/assets/css/animate.css', array(), '');      
-    //     wp_enqueue_style('home-css', get_template_directory_uri() . '/assets/css/home.css', array(), '');      
-    // }  
-   
-    // if(is_page_template('page-templates/page-contact.php')){
-    //     wp_enqueue_style('contact-css', get_template_directory_uri() . '/assets/css/contact.css', array(), '');
-    // }
-    // wp_enqueue_style('dev-css', get_template_directory_uri() . '/assets/css/dev.css', array(), '');
+     wp_enqueue_style('dev-css', get_template_directory_uri() . '/assets/css/dev.css', array(), '');
 
     // //assets/js
 
         wp_enqueue_script('validate-js', get_template_directory_uri() . '/assets/js/jquery.validate.min.js', '','', true);    
-    // wp_enqueue_script('script-js', get_template_directory_uri() . '/assets/js/script.js', '','', true);    
-    // wp_enqueue_script('modal-box-js', get_template_directory_uri() . '/assets/js/modal-box.js', '','', true);    
-       
-    // if(is_front_page() && is_page_template('page-templates/page-home.php')) {    
-	// 	wp_enqueue_script('smk-accordion-js', get_template_directory_uri() . '/assets/js/smk-accordion.js', '','', true);  
-	// 	wp_enqueue_script('tabs-js', get_template_directory_uri() . '/assets/js/tabs.js', '','', true);  
-	// 	wp_enqueue_script('wow.min-js', get_template_directory_uri() . '/assets/js/wow.min.js', '','', true);  
-	// 	wp_enqueue_script('home-js', get_template_directory_uri() . '/assets/js/home.js', '','', true);  
-		
-    // }
+   
   
     wp_enqueue_script('custom-js', get_template_directory_uri() . '/assets/js/custom.js', '', '', true);
     // wp_localize_script('custom-js', 'object', array(

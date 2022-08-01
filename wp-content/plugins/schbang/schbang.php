@@ -111,7 +111,7 @@ run_schbang();
 
 
 /**
- * at_rest_testing_endpoint
+ * get_homepage_data_endpoint
  * @return WP_REST_Response
  */
 function get_homepage_data()
@@ -230,21 +230,43 @@ add_action('rest_api_init', 'at_rest_init');
 
 
 
-function get_form_data(WP_REST_Request $request) 
+function get_form_data($request) 
 {
-	$data = $request->get_body();
+	$data = $request->get_params();
 
-		global $wpdb;
-		$tablename = $wpdb->prefix.'contactus_detail';
-		$wpdb->insert( $tablename, array( 'name'=> $data['first_name'], 'emailid'=> $data['email'],'mobileno'=> $data['phone'], 'message'=> $data['message']  ),
+	global $wpdb;
+	$tablename = $wpdb->prefix.'contactus_detail';
+
+	if(!empty($data)){
+		$form_data = array();
+		foreach($data as $key => $single){
+			$form_data = json_decode($key, TRUE);
+			break;
+		}
+		
+		$wpdb->insert( $tablename, array( 'name'=> $form_data['first_name'], 'emailid'=> $form_data['email'],'mobileno'=> $form_data['phone'], 'message'=> $form_data['message']  ),
 				array( '%s', '%s', '%s', '%s' ) 
-			);
-		$query = "SELECT * FROM $tablename";
-		$results = $wpdb->get_results($query);
-		return $results;
+		);
+
+	}
+	
+	$query = "SELECT * FROM $tablename";
+	$results = $wpdb->get_results($query);
+	if(!empty($results)){	
+			return $results;
+		}
+	else {
+			$response_data = array( 
+                'message' => 'Form Data is Empty'
+            );
+            wp_send_json( $response_data );
+		}
           
 }
 
+/**
+ * Form_rest_init
+ */
 function form_rest_init()
 {
     // route url: domain.com/wp-json/$namespace/$route
